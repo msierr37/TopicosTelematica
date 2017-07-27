@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  #resources: articles
+  resources :articles
 =begin
     get "/articles"
     post "/articles"
