@@ -1,1 +1,5 @@
-<h1>Welcome to InstaTopicos</h1>
+<%if user_signed_in?%>
+    <h1>Bienvenido a InstaTopicos <%= current_user.email%> </h1>
+<%else%>
+    <h1>Bienvenido a InstaTopicos</h1>
+<%end%>
