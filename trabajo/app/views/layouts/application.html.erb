@@ -11,6 +11,8 @@
   </head>
 
   <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <header>
       <nav class="be-red white large-padding">
         <ul class="no-list row center-xs middle-xs">
@@ -26,6 +28,11 @@
           <li class="col-md">
             Subir
           </li>
+          <% if user_signed_in? %>
+            <li class="col-md">
+              <%= link_to "Salir", destroy_user_session_path, method: :delete %>
+            </li>
+          <%end%>
         </ul>
       </nav>
     </header>

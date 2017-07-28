@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :articles
 =begin
-    get "/articles"
-    post "/articles"
-    delete "/articles"
-    get "/articles/:id"
-    get "/articles/new"
-    get "/articles/:id/edit"
-    patch "/articles/:id"
-    put "/articles/:id"
+    get "/articles" index
+    post "/articles" create
+    delete "/articles" delete
+    get "/articles/:id" show
+    get "/articles/new" new
+    get "/articles/:id/edit" edit
+    patch "/articles/:id" update
+    put "/articles/:id" update
 =end
   #get 'welcome/index'
   root 'welcome#index'
