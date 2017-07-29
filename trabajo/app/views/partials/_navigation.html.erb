@@ -4,13 +4,12 @@
           <li class="col-md">
             <h1 class="no-margin" id="logo">InstaTopicos</h1>
           </li>
-          
           <% if user_signed_in? %>
           <li class="col-md">
             <%= link_to "Inicio", articles_path %>
           </li>
           <li class="col-md">
-            <%= link_to "Buscar" %>
+            <%= link_to "Buscar"%>
           </li>
           <li class="col-md">
             <%= link_to "Subir", new_article_path %>

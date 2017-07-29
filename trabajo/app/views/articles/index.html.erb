@@ -1,6 +1,28 @@
-<% @articles.each do |article| %>
-    <h1><%= article.title %></h1>
-    <div>
-        <%= article.body %>
+ <body>
+    <div class="row center-xs">
+      <div class="col-xs-8 col-md-6">
+        <div class="box text-left">
+      <%= form_for :post do |f| %>
+       <div class="field">
+                <%= f.text_field :title, placeholder: "Título de la foto", class:"form-control"%>
+            </div>
+            <div class="field">
+                <%= link_to "Buscar"%>
+            </div>
+      <% end %>
+      </div>
+      </div>
+      </div>
+    </body>
+<div class="row center-xs">
+  <div class="col-xs-8 col-md-6">
+    <div class="box text-left">
+        <% @articles.each do |article| %>
+            <h1><%= article.title %></h1>
+            <div>
+                <%= article.body %>
+            </div>
+        <%end%>
     </div>
-<%end%>
+  </div>
+</div>
