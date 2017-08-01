@@ -26,8 +26,25 @@ class ArticlesController < ApplicationController
         else
             render :new
         end
-    end 
+    end
+
+    def destroy
+        @article = Article.find(params[:id])
+        @article.destroy #Destroy elimina la foto de la BD
+        redirect_to articles_path
+    end
+    def edit
+        @article = Article.find(params[:id])
+    end
     #PUT /articles/:id
     def update
+        @article = Article.find(params[:id])
+        if @article.update_attributes(title: params[:article][:title], 
+                                body: params[:article][:body])
+            redirect_to @article
+        else
+            render :edit
+        end
+
     end
 end

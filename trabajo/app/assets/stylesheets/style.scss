@@ -22,6 +22,16 @@ a,a:visited{
      padding: 10px 12px;
 }
 
+.btn{
+     background-color: inherit;
+     border: none;
+     outline: none;
+     text-transform: uppercase;
+     cursor: pointer;
+     font-size: 1em;
+     padding: 8px 10px;
+}
+
 .text-left{
     text-align: left;
 }

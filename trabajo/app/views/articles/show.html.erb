@@ -1,4 +1,4 @@
 <h1><%= @article.title %></h1>
 <div>
-    <%= @article.body %>
+    <%= @article.body %> - <%= link_to "Editar", edit_article_path(@article), class:"btn be-red"%>
 </div>
