@@ -1,11 +1,17 @@
 class ArticlesController < ApplicationController
     #GET /articles
     def index
-        @articles = Article.all
+        palabra = "%#{params[:keyword]}%"
+        if palabra != nil
+            @articles = Article.where("title LIKE ? OR body LIKE?",palabra,palabra)
+        else
+            @articles = Article.all
+        end
     end
     #GET /articles/:id
     def show
         @article = Article.find(params[:id])
+      
     end
     #GET /articles/new
     def new

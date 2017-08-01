@@ -1,15 +1,15 @@
  <body>
-    <div class="row center-xs">
+    <div class="row center-xs ">
       <div class="col-xs-8 col-md-6">
         <div class="box text-left">
-      <%= form_for :post do |f| %>
        <div class="field">
-                <%= f.text_field :title, placeholder: "Título de la foto", class:"form-control"%>
-            </div>
-            <div class="field">
-                <%= link_to "Buscar"%>
-            </div>
-      <% end %>
+                <%= form_tag articles_path, method: :get do%>
+                <%= text_field_tag :keyword, nil, placeholder: "Título o Descripción", class:"form-control"%>
+                <%= content_tag :button,class:"btnSubmit be-red",type: :submit do%>
+                    Buscar
+             <% end %>
+             <% end %>
+      </div>       
       </div>
       </div>
       </div>
