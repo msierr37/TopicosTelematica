@@ -1,4 +1,9 @@
 <h1><%= @article.title %></h1>
 <div>
-    <%= @article.body %> - <%= link_to "Editar", edit_article_path(@article), class:"btn be-red"%>
+<p>Tamaño: <%= @article.tamano %></p>
+</div>
+<div>
+    <%= @article.body %> -  <% if @article.user_id == current_user.id%>
+    <%= link_to "Editar", edit_article_path(@article), class:"btn be-red"%>
+    <%end%>
 </div>

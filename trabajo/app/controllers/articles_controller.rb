@@ -11,6 +11,7 @@ class ArticlesController < ApplicationController
     #GET /articles/:id
     def show
         @article = Article.find(params[:id])
+        @article.update_visits_count
       
     end
     #GET /articles/new
@@ -19,8 +20,8 @@ class ArticlesController < ApplicationController
     end
     #POST /articles
     def create
-        @article = Article.new(title: params[:article][:title], 
-                                body: params[:article][:body])
+        @article = current_user.articles.new(title: params[:article][:title], 
+                                body: params[:article][:body],disponible: params[:article][:disponible], tamano: params[:article][:tamano])
         if  @article.save
             redirect_to @article
         else
@@ -40,7 +41,7 @@ class ArticlesController < ApplicationController
     def update
         @article = Article.find(params[:id])
         if @article.update_attributes(title: params[:article][:title], 
-                                body: params[:article][:body])
+                                body: params[:article][:body],disponible: params[:article][:disponible], tamano: params[:article][:tamano])
             redirect_to @article
         else
             render :edit

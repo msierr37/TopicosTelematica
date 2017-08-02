@@ -9,15 +9,21 @@
                 </div>
             <%end%>
             <div class="field">
+            <h5> Disponibilidad de la foto: </h5><%= f.select :disponible, options_for_select([["Público"],["Privado"]])%>
+            </div>
+            <div class="field">
                 <%= f.text_field :title, placeholder: "Título de la foto", class:"form-control"%>
+            </div>
+                <div class="field">
+                <%= f.text_field :tamano, placeholder: "Tamaño de la foto", class:"form-control"%>
             </div>
             <div class="field">
                 <%= f.text_area :body, placeholder: "Descripción", style:"height:250px;", class:"form-control"%>
             </div>
             <div class="field">
-                <%= f.submit "Actualizar", class:"btnSubmit be-red white"%>
+                <%= f.submit "Subir", class:"btnSubmit be-red white"%>
             </div>
         <%end%>
     </div>
   </div>
-</div>
+</div> 
