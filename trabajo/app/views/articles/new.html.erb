@@ -9,7 +9,7 @@
                 </div>
             <%end%>
             <div class="field">
-            <h5> Disponibilidad de la foto: </h5><%= f.select :disponible, options_for_select([["Público"],["Privado"]])%>
+            <h5> Disponibilidad de la foto: </h5><%= f.select :disponible, options_for_select([["Público"],["Privado"],["Compartido"]])%>
             </div>
             <div class="field">
                 <%= f.text_field :title, placeholder: "Título de la foto", class:"form-control"%>
