@@ -52,7 +52,7 @@
             </p>
             <%end%>
             <%elsif article.disponible == "Público" and not user_signed_in? %>
-            <h1><%= link_to article.title, article %></h1>
+            <h1><%= article.title, article %></h1>
             <div>
                 Visitas: <%= article.visits_count %>
             </div>
