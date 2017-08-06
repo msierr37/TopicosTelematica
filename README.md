@@ -1,7 +1,6 @@
 # TopicosTelematica
 Proyecto de la materia Tópicos Telemática
 by Marcos Sierra - msierr37@eafit.edu.co
-#Dearrollo
 
 ## 1. Creating the Article Application
   rails new Articles
