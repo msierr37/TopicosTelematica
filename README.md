@@ -351,3 +351,69 @@ production:
                                  PATCH "/articles/:id" update         articles#update
                                  PUT "/articles/:id" update           articles#update
  +                    root       GET  welcome/index                   welcome#index
+ 
+# 2. SETUP Centos 7.1 in production With Apache Web Server and Passenger.
+## Install Apache Web Server
+
+              
+       msierr37@prod$ sudo yum install httpd
+       msierr37@prod$ sudo systemctl enable httpd
+       msierr37@prod$ sudo systemctl start httpd
+
+       test in a browser: http://10.131.137.236
+
+## Install YARN (https://yarnpkg.com/en/docs/install) (for rake assets:precompile):
+
+##  Install module Passenger for Rails in HTTPD (https://www.phusionpassenger.com/library/install/apache/install/oss/el7/):
+
+jsanch81@prod$ gem install passenger
+
+             msierr37@prod$ passenger-install-apache2-module
+             when finish the install module, add to /etc/http/conf/httpd.conf:
+
+               LoadModule passenger_module /home/msierr37/.rvm/gems/ruby-2.4.1/gems/passenger-5.1.7/buildout/apache2/mod_passenger.so
+               <IfModule mod_passenger.c>
+                 PassengerRoot /home/msierr37/.rvm/gems/ruby-2.4.1/gems/passenger-5.1.7
+                 PassengerDefaultRuby /home/msierr37/.rvm/gems/ruby-2.4.1/wrappers/ruby
+               </IfModule>
+## Configure the ruby rails app to use passenger (https://www.phusionpassenger.com/library/walkthroughs/deploy/ruby/ownserver/apache/oss/el7/deploy_app.html):
+
+### Summary:
+  - clone the repo to /var/www/myapp/rubyArticulosEM
+
+             msierr37@prod$ cd /var/www/myapp/rubyArticulosEM
+
+             msierr37@prod$ bundle install --deployment --without development test
+
+             - Configure database.yml and secrets.yml:
+
+             msierr37@prod$ bundle exec rake secret
+             msierr37@prod$ vim config/secrets.yml
+             
+### Production:
+               secret_key_base: the value that you copied from 'rake secret'
+
+             msierr37@prod$ bundle exec rake assets:precompile db:migrate RAILS_ENV=production
+           add articles.conf to /etc/httpd/conf.d/myapp.conf:
+
+             <VirtualHost *:81>
+                 ServerName 10.131.137.229
+
+               # Tell Apache and Passenger where your app's 'public' directory is
+                 DocumentRoot /var/www/instatopicos/code/trabajo/public
+
+                 PassengerRuby /home/msierr37/.rvm/gems/ruby-2.4.1/wrappers/ruby
+
+                 # Relax Apache security settings
+                 <Directory /var/www/instatopicos/code/trabajo/public>
+                     Allow from all
+                     Options -MultiViews
+                     #Uncomment this if you're on Apache >= 2.4:
+                     #Require all granted
+                 </Directory>
+             </VirtualHost>
+           restart httpd
+
+             msierr37@prod$ sudo systemctl restart httpd
+
+             test: http://10.131.137.239
