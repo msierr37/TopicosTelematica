@@ -281,12 +281,12 @@ production:
  
  ## install postgres:
  
-   user1@test$ sudo yum install -y postgresql-server postgresql-contrib postgresql-devel
+   msierr37@test$ sudo yum install -y postgresql-server postgresql-contrib postgresql-devel
    Password: *****
  
-   user1@test$ sudo postgresql-setup initdb
+   msierr37@test$ sudo postgresql-setup initdb
  
-   user1@test$ sudo vi /var/lib/pgsql/data/pg_hba.conf
+   msierr37@test$ sudo vi /var/lib/pgsql/data/pg_hba.conf
  
    original:
  
@@ -300,45 +300,45 @@ production:
  
  * run postgres:
  
-         user1@test$ sudo systemctl start postgresql
-         user1@test$ sudo systemctl enable postgresql
+         msierr37@test$ sudo systemctl start postgresql
+         msierr37@test$ sudo systemctl enable postgresql
  
  * Create Database User:
  
-         user1@test$ sudo su - postgres
+         msierr37@test$ sudo su - postgres
  
-         user1@test$ createuser -s pguser
+         msierr37@test$ createuser -s pguser
  
-         user1@test$ psql
+         msierr37@test$ psql
  
          postgres=# \password pguser
          Enter new password: changeme
  
          postgres=# \q
  
-         user1@test$ exit
+         msierr37@test$ exit
  
  ## Setup RAILS_ENV and PORT (3000 for dev, 4000 for testing or 5000 for production)
  
-         user1@test$ export RAILS_ENV=test
-         user1@test$ export PORT=3001
+         msierr37@test$ export RAILS_ENV=test
+         msierr37@test$ export PORT=3001
  
  ## open PORT on firewalld service:
  
-         user1@test$ sudo firewall-cmd --zone=public --add-port=4000/tcp --permanent
-         user1@test$ sudo firewall-cmd --reload
+         msierr37@test$ sudo firewall-cmd --zone=public --add-port=4000/tcp --permanent
+         msierr37@test$ sudo firewall-cmd --reload
  
  ## clone de git repo, install and run:
  
-         user1@test$ cd Documents
-         user1@test$ git clone https://github.com/st0263eafit/rubyArticulosEM.git
-         user1@test$ cd TopicosTelematica
-         user1@test$ cd trabajo
-         user1@test$ bundle install
-         user1@test$ rake db:drop db:create db:migrate
-         user1@test$ export RAILS_ENV=test
-         user1@test$ export PORT=3001 
-         user1@test$ rails server
+         msierr37@test$ cd Documents
+         msierr37@test$ git clone https://github.com/st0263eafit/rubyArticulosEM.git
+         msierr37@test$ cd TopicosTelematica
+         msierr37@test$ cd trabajo
+         msierr37@test$ bundle install
+         msierr37@test$ rake db:drop db:create db:migrate
+         msierr37@test$ export RAILS_ENV=test
+         msierr37@test$ export PORT=3001 
+         msierr37@test$ rails server
  
  
    Prefix    Verb   URI Pattern                                Controller#Action
